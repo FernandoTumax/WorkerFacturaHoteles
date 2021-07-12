@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacturaGestorHotelesServicios" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8e15a253-b11d-4944-b825-4f5b231fb336">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="_idReservacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select s.nombre_servicio,
+       s.precio
+from facturacion_service fs
+    inner join service s on fs.service_id = s.id
+where fs.root_id = $P{_idReservacion};]]>
+	</queryString>
+	<field name="nombre_servicio" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="25">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="23" uuid="101cdcd6-76af-4b49-b12c-a27d319998db"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="14"/>
+				</textElement>
+				<text><![CDATA[Listado de servicios]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="0" width="571" height="20" forecolor="#FFFFFF" backcolor="#FF6633" uuid="a46b5f1b-dbc1-41ab-92dd-5f73207fe592"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="1" width="432" height="20" forecolor="#FFFFFF" uuid="c96bf0ad-ae0b-473c-87c4-b14ca87d6c9e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="14"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="0" width="139" height="20" forecolor="#FFFFFF" uuid="e6c51bd5-cc10-4b6a-86e8-8705bc89c694"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="14"/>
+				</textElement>
+				<text><![CDATA[Precio:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="-1" width="432" height="22" uuid="6b3f4369-966a-4140-a59f-4d61ba03d7d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_servicio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="433" y="1" width="139" height="20" uuid="ac5ede0a-9d03-4879-86c5-96a2a98cf711"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacturaGestorHotelesHabitaciones" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2e9fc8d9-26b2-4a14-ad93-78c167dbe538">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="_idReservacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select r.codigo_habitacion,
+       r.tipo_habitacion,
+       r.precio
+       from facturacion_room fr
+    inner join room r on fr.room_id = r.id
+where fr.root_id = $P{_idReservacion};]]>
+	</queryString>
+	<field name="codigo_habitacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_habitacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="23" uuid="38aba95c-b7bb-4441-a06e-379b6e9530c7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="14"/>
+				</textElement>
+				<text><![CDATA[Listado de habitaciones]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="572" height="21" forecolor="#FF6633" backcolor="#FF6633" uuid="6580ba4f-a5f9-4b00-9ff1-1cd918261710"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="216" height="21" forecolor="#FFFFFF" uuid="ccd53109-eb93-4009-abce-76ed606ad66b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="14"/>
+				</textElement>
+				<text><![CDATA[Codigo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="0" width="139" height="21" forecolor="#FFFFFF" uuid="58b9dbb1-b29f-495c-bbb8-0b90dde05597"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="14"/>
+				</textElement>
+				<text><![CDATA[Precio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="0" width="217" height="21" forecolor="#FFFFFF" uuid="acfdb9cd-ca63-439c-910f-1605a6b87682"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="14"/>
+				</textElement>
+				<text><![CDATA[Tipo de habitacion:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="216" height="23" backcolor="#FFFFFF" uuid="7897b73c-b9da-4ea1-8ba7-8fdd07984028"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codigo_habitacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="216" y="0" width="217" height="23" uuid="d3c9b335-48f7-4cd0-a380-4bb6d84be966"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tipo_habitacion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="433" y="0" width="139" height="23" uuid="9db23263-8f45-4ee7-a383-769befdb6e52"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
